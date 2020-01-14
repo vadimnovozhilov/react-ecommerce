@@ -8,6 +8,21 @@ import Auth from './Pages/Auth/Auth';
 import { auth } from './firebase/utils.js';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currentUser: null
+    }
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      this.setState({ currentUser: user });
+    })
+  }
+  
+
   render() {
     return (
       <div>
